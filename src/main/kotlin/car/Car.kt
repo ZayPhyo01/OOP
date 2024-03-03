@@ -4,6 +4,7 @@ class Car {
 
     private var speed = 0
     private var isCarKeyOpen = false
+    private val speedoMeter: Speedometer = Speedometer()
 
     fun openCarKey() {
         isCarKeyOpen = true
@@ -17,8 +18,8 @@ class Car {
 
     fun drive(speed: Int) {
         if (speed > 0 && isCarKeyOpen) {
-            if (speed > LIMITED_SPEED) {
-                beepSpeedometer()
+            if (speedoMeter.isSpeedLimitOver(speed)) {
+                 speedoMeter.beep()
             } else {
                 this.speed = speed
                 println("Car is driving with speed $speed")

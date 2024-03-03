@@ -9,4 +9,7 @@ class Speedometer {
     fun beep () {
         println("Beep! Beep! , your speed is over limit")
     }
+
+    fun isSpeedLimitOver (speed : Int) = speed > LIMITED_SPEED
+
 }
