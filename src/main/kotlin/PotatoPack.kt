@@ -1,7 +1,12 @@
 package encapsulation
 
+import food.Potato
+
 class PotatoPack {
     private var potatoChip = 50
+    private val potato = Potato(
+        "sweet", 30
+    )
 
     fun takeChip() {
         if (potatoChip > 0) {

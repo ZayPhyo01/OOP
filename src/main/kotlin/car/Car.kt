@@ -1,10 +1,14 @@
 package encapsulation.car
 
+
+
+
 class Car {
 
     private var speed = 0
     private var isCarKeyOpen = false
     private val speedoMeter: Speedometer = Speedometer()
+    private val carBreak: Break = Break()
 
     fun openCarKey() {
         isCarKeyOpen = true
@@ -17,9 +21,16 @@ class Car {
     }
 
     fun drive(speed: Int) {
-        if (speed > 0 && isCarKeyOpen) {
+        //same level
+        //car ready to drive
+        //speed > 0 and key open
+        //drive
+        //speed over or not
+        //beep
+
+        if (isReadyToDrive()) {
             if (speedoMeter.isSpeedLimitOver(speed)) {
-                 speedoMeter.beep()
+                speedoMeter.beep()
             } else {
                 this.speed = speed
                 println("Car is driving with speed $speed")
@@ -30,11 +41,16 @@ class Car {
         }
     }
 
+    //detail
+    private fun isReadyToDrive() = speed > 0 && isCarKeyOpen
+
     //yes
     fun stop() {
-        while (speed > 0) {
-            speed--
-        }
-        breakLifetime -= 10
+        carBreak.stop(
+            speed , onUpdateSpeed = {
+                speed = it
+            }
+        )
     }
 }
+//car  has a  break
